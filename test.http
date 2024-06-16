@@ -1,0 +1,47 @@
+POST  http://localhost:3050/users/add-user HTTP/1.1
+Content-Type: application/json
+Accept-Language: en-us
+
+ {
+  "userId":3,
+  "firstName": "B",
+  "lastName": "Dore",
+  "userName":"test",
+  "address": "123 Main St, Cityville",
+  "phone": "555-1830",
+  "email": "test.doe@example.com",
+  "password": "5678"
+ }
+
+###
+###
+
+
+POST http://localhost:3050/users/login
+Content-Type: application/json
+Accept-Language: en-us
+
+{
+  "userName": "test",
+  "password": "5678"
+}
+
+###
+
+PUT http://localhost:3050/users/test
+Content-Type: application/json
+
+{
+  "firstName": "david",
+  "lastName": "Updated Last Name",
+  "userName": "test2",
+  "address": "Updated Address",
+  "phone": "Updated Phone",
+  "email": "updated.email@example.com",
+  "password": "1111"
+}
+###
+
+DELETE http://localhost:3050/users/B
+
+
