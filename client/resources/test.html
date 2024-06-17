@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Example</title>
+</head>
+<body>
+    <div id="dropdown-container"></div>
+
+    <script>
+        // Create the select element
+        var select = document.createElement("select");
+        select.id = "mySelect";
+
+        // Array of options
+        var options = ["Option 1", "Option 2", "Option 3", "Option 4"];
+
+        // Create options and add them to the select element
+        for (var i = 0; i < options.length; i++) {
+            var option = document.createElement("option");
+            option.value = options[i];
+            option.text = options[i];
+            select.appendChild(option);
+        }
+
+        // Add the select element to the page
+        var container = document.getElementById("dropdown-container");
+        container.appendChild(select);
+    </script>
+</body>
+</html>

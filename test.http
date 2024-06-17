@@ -45,3 +45,23 @@ Content-Type: application/json
 DELETE http://localhost:3050/users/B
 
 
+###
+POST http://localhost:3050/therapist/add-therapist HTTP/1.1
+Content-Type: application/json
+Accept-Language: en-us
+
+{
+  "therapistId": 8,
+  "firstName": "Michael",
+  "lastName": "Brown",
+  "therapistName": "mbrown",
+  "address": "303 Birch St, Township",
+  "phoneNumber": "555-3456",
+  "email": "michael.brown@example.com",
+  "licenseAndCertifications": ["CertificationF", "CertificationG"],
+  "startDate": "2023-05-20",
+  "hourlyRate": 130,
+  "notes": "Focus on trauma recovery."
+}
+
+

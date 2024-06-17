@@ -12,6 +12,36 @@ therapistRouter.get('/', async (req, res) => {
     }
 });
 
+// Get therapist by last name
+therapistRouter.get('/by-name/:therapistName', async (req, res) => {
+    const therapistName = req.params.therapistName;
+    try {
+        const therapists = await User.findOne({ lastName: therapistName });
+        if (therapists) {   
+            res.json(therapists);
+        } else {
+            res.status(404).json({ message: "Therapist not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Get therapist by address
+therapistRouter.get('/by-address/:therapistAddress', async (req, res) => {
+    const address = req.params.therapistAddress;
+    try {
+        const therapists = await User.findOne({address});
+        if (therapists) {   
+            res.json(therapists);
+        } else {
+            res.status(404).json({ message: "Therapist not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // add a new user
 therapistRouter.post('/add-therapist', async (req, res) => {
     const therapist = new Therapist(req.body);
@@ -43,8 +73,8 @@ therapistRouter.post('/login', async (req, res) => {
     }
 });
 // Update user by userName
-therapistRouter.put('/:therapistName', async (req, res) => {
-    const therapistName = req.params.userName;
+therapistRouter.put('/update/:therapistName', async (req, res) => {
+    const therapistName = req.params.therapistName;
     const updatedUserInfo = req.body;
 
     try {
@@ -61,7 +91,7 @@ therapistRouter.put('/:therapistName', async (req, res) => {
     }
 });
 // Delete user by userName
-therapistRouter.delete('/:userName', async (req, res) => {
+therapistRouter.delete('/delete/:userName', async (req, res) => {
     const therapistName = req.params.userName;
 
     try {

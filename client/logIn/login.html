@@ -13,19 +13,26 @@
     <div id="UserProfile">
         <div>
             <label for="user">user name:
-                <input id="user" type="email" required placeholder="Abraham...">
+                <input id="user" type="email" required placeholder="Abraham..." maxlength="12">
             </label>
         </div>
         <p></p>
         <div>
             <label for="password"> password:
                 <input id="password" type="password" required placeholder="12345678..." maxlength="8">
+
             </label>
         </div>
         <p></p>
-        <div id="button">
-            <button type="submit">
+        <div >
+            <button id="submit" type="submit">
                 submit
+            </button>
+            <button id="reset">
+                reset
+            </button>
+            <button id="test">
+                test
             </button>
         </div>
         
@@ -35,5 +42,6 @@
     </div>
     
     <script src = "login.js" > </script>
+    
 </body>
 </html>

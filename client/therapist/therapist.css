@@ -1,0 +1,40 @@
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.therapist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.therapist-item {
+    width: 70vw;
+    margin: 10px 0;
+}
+
+.therapist-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    text-align: left;
+}
+
+.therapist-card h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.therapist-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.therapist-card p strong {
+    color: #333;
+}

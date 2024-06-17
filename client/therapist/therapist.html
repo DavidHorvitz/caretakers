@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="therapist.css">
 </head>
+
 <body>
-
-<h1>Hello</h1>
-<button id="CreateMeeting">Create a meeting</button>
-
-
-
+    <div style="display: flex; justify-content: space-around; height: 10vh; background-color: rgb(37, 37, 201); color: whitesmoke; flex-direction: column;">
+        <div style="display: flex; justify-content: center;">List of therapists</div>
+        <div style="display: flex; justify-content: center;">
+            <div style="border-radius: 5px; display: flex; height: 4vh; width: 70vw; background-color: rgb(255, 255, 255); margin: auto; overflow: hidden;">
+                <div id="search-btn" style="border-radius: 5px; margin: 2px; color: whitesmoke; display: flex; align-items: center; justify-content: center; background-color: rgb(37, 37, 201); width: 10vw;">Search</div>
+                <input id="search-input" style="width: 80vw; border: none; outline: none; padding-left: 10px;" type="text" placeholder="Free Search">
+            </div>
+        </div>
+    </div>
     
-    <script src = "therapist.js" > </script>
+    <div id="therapistContainer" style="display: flex; align-items: center; height: 90vh; flex-direction: column;">
+        <div id="therapist-item"></div>
+    </div>
+    <div>
+        <button id="test">test</button>
+    </div>
+
+    <script type="module" src="therapist.js"></script>
 </body>
+
 </html>
