@@ -46,22 +46,41 @@ DELETE http://localhost:3050/users/B
 
 
 ###
+
+
 POST http://localhost:3050/therapist/add-therapist HTTP/1.1
 Content-Type: application/json
 Accept-Language: en-us
 
 {
-  "therapistId": 8,
-  "firstName": "Michael",
-  "lastName": "Brown",
-  "therapistName": "mbrown",
-  "address": "303 Birch St, Township",
+  "therapistId": 24,
+  "firstName": "Lucas",
+  "lastName": "Clark",
+  "therapistName": "lclark",
+  "address": "123 Maple St, Smalltown",
   "phoneNumber": "555-3456",
-  "email": "michael.brown@example.com",
-  "licenseAndCertifications": ["CertificationF", "CertificationG"],
-  "startDate": "2023-05-20",
-  "hourlyRate": 130,
-  "notes": "Focus on trauma recovery."
+  "email": "lucas.clark@example.com",
+  "licenseAndCertifications": ["CertificationW", "CertificationX"],
+  "startDate": "2021-01-10",
+  "hourlyRate": 135,
+  "notes": "Specializes in stress management for adolescents.",
+  "daysAvailable": {
+    "Sunday": true,
+    "Monday": true,
+    "Tuesday": true,
+    "Wednesday": true,
+    "Thursday": true,
+    "Friday": true,
+    "Saturday": true
+  },
+  "availabilityHours": ["10:00-13:00", "14:00-18:00"],
+  "specializations": ["Adolescent Therapy", "Stress Management"]
 }
+
+
+
+
+
+
 
 

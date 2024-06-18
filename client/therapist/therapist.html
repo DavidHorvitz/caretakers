@@ -10,15 +10,40 @@
 
 <body>
     <div style="display: flex; justify-content: space-around; height: 10vh; background-color: rgb(37, 37, 201); color: whitesmoke; flex-direction: column;">
-        <div style="display: flex; justify-content: center;">List of therapists</div>
-        <div style="display: flex; justify-content: center;">
-            <div style="border-radius: 5px; display: flex; height: 4vh; width: 70vw; background-color: rgb(255, 255, 255); margin: auto; overflow: hidden;">
-                <div id="search-btn" style="border-radius: 5px; margin: 2px; color: whitesmoke; display: flex; align-items: center; justify-content: center; background-color: rgb(37, 37, 201); width: 10vw;">Search</div>
-                <input id="search-input" style="width: 80vw; border: none; outline: none; padding-left: 10px;" type="text" placeholder="Free Search">
+        <div style="display: flex;">
+            <div style="flex-grow: 1;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpxzmqd7Mnd2wAD0VH3hhzslm_zZL4kP6_f-sRnZqci4woyGRKijdHQv-5p8jBYSVTCE&usqp=CAU" alt="" style="height: 4vh; width: 23vw;">
+            </div>
+            <div style="flex-grow: 2; display: flex; align-items: center; margin-left: 1%;">
+                <div style="margin-left: 100px;">List of therapists</div>
+            </div>
+        </div>
+
+        <div style="border-radius: 5px; display: flex; height: 4vh; width: 70vw; background-color: rgb(255, 255, 255); margin: auto; overflow: hidden;">
+
+            <div id="search-btn" style="border-radius: 5px; margin: 2px; color: whitesmoke;
+                     display: flex; align-items: center; justify-content: center;
+                      background-color: rgb(37, 37, 201); width: 10vw;">
+                Search</div>
+
+            <input id="search-input" style="width: 80vw; border: none; outline: none; padding-left: 10px;" type="text" placeholder="Doctor Name...">
+            <div>
+                <select name="Specializations" id="select">
+                    <option value="all">all</option>
+                    <option value="Trauma Recovery">Trauma Recovery</option>
+                    <option value="Family Therapy">Family Therapy</option>
+                    <option value="Anxiety">Anxiety</option>
+                    <option value="cbt">CBT</option>
+                    <option value="Child Therapy">Child Therapy</option>
+                    <option value="Adolescent Therapy">Adolescent Therapy</option>
+                    <option value="Stress Management">Stress Management</option>
+                    <option value="Mindfulness">Mindfulness</option>
+                    <option value="Addiction"> Addiction </option>
+                </select>
             </div>
         </div>
     </div>
-    
+
     <div id="therapistContainer" style="display: flex; align-items: center; height: 90vh; flex-direction: column;">
         <div id="therapist-item"></div>
     </div>

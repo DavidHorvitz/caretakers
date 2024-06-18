@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schedule</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .calendar {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 20px;
+    }
+
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .calendar-header h2 {
+        margin: 0;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+    .calendar-body {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+    }
+
+    .day {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #e0e0e0;
+        cursor: pointer;
+    }
+
+    .day:hover {
+        background-color: #ccc;
+    }
+
+    .appointments {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .appointment {
+        margin-bottom: 10px;
+        padding: 5px;
+        background-color: #d9edf7;
+        border: 1px solid #bce8f1;
+        border-radius: 3px;
+    }
+</style>
+</head>
+<body>
+
+<div class="calendar">
+    <div class="calendar-header">
+        <h2 id="monthYear"></h2>
+        <div class="dropdown">
+            <button onclick="toggleDropdown()" class="dropbtn">Select Month</button>
+            <div id="monthDropdown" class="dropdown-content">
+                <a href="#" onclick="changeMonth(-1)">Previous Month</a>
+                <a href="#" onclick="changeMonth(1)">Next Month</a>
+            </div>
+        </div>
+    </div>
+    <div class="calendar-body" id="calendarBody">
+        <!-- Calendar days will be populated dynamically -->
+    </div>
+    <div class="appointments" id="appointmentsContainer">
+        <!-- Appointments will be displayed here -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const calendarBody = document.getElementById('calendarBody');
+        const appointmentsContainer = document.getElementById('appointmentsContainer');
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        updateCalendar(currentMonth, currentYear);
+
+        // Function to update the calendar
+        function updateCalendar(month, year) {
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const monthName = new Date(year, month).toLocaleString('default', { month: 'long' });
+            document.getElementById('monthYear').textContent = `${monthName} ${year}`;
+
+            // Clearing existing calendar content
+            calendarBody.innerHTML = '';
+
+            // Creating calendar days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('button');
+                dayElement.classList.add('day');
+                dayElement.textContent = day;
+                dayElement.addEventListener('click', () => showAppointments(day, month, year));
+                calendarBody.appendChild(dayElement);
+            }
+        }
+
+        // Function to show appointments for a selected day
+        function showAppointments(day, month, year) {
+            // Clearing existing appointments content
+            appointmentsContainer.innerHTML = '';
+
+            // Example appointments - replace with actual data retrieval or API calls
+            const appointments = [
+                { time: '10:00', title: 'Meeting with client' },
+                { time: '12:00', title: 'Lunch break' },
+                { time: '15:00', title: 'Project review' }
+            ];
+
+            // Creating elements to display appointments
+            appointments.forEach(appointment => {
+                const appointmentElement = document.createElement('div');
+                appointmentElement.classList.add('appointment');
+                appointmentElement.textContent = `${appointment.time} - ${appointment.title}`;
+                appointmentsContainer.appendChild(appointmentElement);
+            });
+        }
+
+        // Function to change the displayed month
+        function changeMonth(delta) {
+            currentMonth += delta;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            updateCalendar(currentMonth, currentYear);
+        }
+
+        // Function to toggle the dropdown menu
+        function toggleDropdown() {
+            document.getElementById("monthDropdown").classList.toggle("show");
+        }
+
+        // Closing the dropdown when clicking outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>schedule</title>
+    <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+    <div
+        style="display: flex; justify-content: space-around; height: 10vh; background-color: rgb(37, 37, 201); color: whitesmoke; flex-direction: column; ">
+        <div style="display: flex;">
+            <div style="flex-grow: 1;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpxzmqd7Mnd2wAD0VH3hhzslm_zZL4kP6_f-sRnZqci4woyGRKijdHQv-5p8jBYSVTCE&usqp=CAU" alt="" style="height: 4vh; width: 23vw;">
+                <h1 >Appointment</h1>
+            </div>
+        </div>
+</body>
+</html> -->

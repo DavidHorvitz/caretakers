@@ -52,9 +52,23 @@ const therapistSchema = new Schema({
     hourlyRate: {
         type: Number
     },
-
     notes: {
         type: String
+    },
+    daysAvailable: {
+        Sunday: { type: Boolean, default: false },
+        Monday: { type: Boolean, default: false },
+        Tuesday: { type: Boolean, default: false },
+        Wednesday: { type: Boolean, default: false },
+        Thursday: { type: Boolean, default: false },
+        Friday: { type: Boolean, default: false },
+        Saturday: { type: Boolean, default: false }
+    },
+    availabilityHours: {
+        type: [String] // Assuming hours will be stored as an array of strings like ['09:00-12:00', '14:00-18:00']
+    },
+    specializations: {
+        type: [String] // Adding an array of strings to store specializations
     }
 });
 

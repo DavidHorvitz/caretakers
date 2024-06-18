@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import setup from './db/setup.js'; // Ensure the path is correct
 import userRouter from './db/routers/userRouter.js';
-import healthRouter from './db/routers/healthRouter.js';
 import therapistRouter from './db/routers/therapistRouter.js';
+import meetingRouter from './db/routers/meetingRouter.js';
 
 
 const app = express();
@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
   res.send('Server is running on port 3050');
 });
 
-app.use('/health', healthRouter);
 app.use('/users', userRouter);
-app.use('/therapist',therapistRouter);
+app.use('/therapist', therapistRouter);
+app.use('/meeting', meetingRouter);
 // Run setup and then start the server
 setup()
   .then(() => {

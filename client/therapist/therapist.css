@@ -38,3 +38,7 @@ body {
 .therapist-card p strong {
     color: #333;
 }
+select{
+    border-radius: 10px;
+    
+}
