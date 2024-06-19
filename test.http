@@ -53,17 +53,17 @@ Content-Type: application/json
 Accept-Language: en-us
 
 {
-  "therapistId": 24,
-  "firstName": "Lucas",
-  "lastName": "Clark",
-  "therapistName": "lclark",
-  "address": "123 Maple St, Smalltown",
-  "phoneNumber": "555-3456",
-  "email": "lucas.clark@example.com",
-  "licenseAndCertifications": ["CertificationW", "CertificationX"],
-  "startDate": "2021-01-10",
-  "hourlyRate": 135,
-  "notes": "Specializes in stress management for adolescents.",
+  "therapistId": 35,
+  "firstName": "Charlotte",
+  "lastName": "Washington",
+  "therapistName": "cwashington",
+  "address": "345 Walnut St, Parkside",
+  "phoneNumber": "555-5432",
+  "email": "charlotte.washington@example.com",
+  "licenseAndCertifications": ["CertificationK"],
+  "startDate": "2022-01-01",
+  "hourlyRate": 200,
+  "notes": "Specializes in cognitive therapy.",
   "daysAvailable": {
     "Sunday": true,
     "Monday": true,
@@ -73,8 +73,32 @@ Accept-Language: en-us
     "Friday": true,
     "Saturday": true
   },
-  "availabilityHours": ["10:00-13:00", "14:00-18:00"],
-  "specializations": ["Adolescent Therapy", "Stress Management"]
+  "availabilityHours": ["09:00-13:00", "15:00-19:00"],
+  "specializations": ["Cognitive Therapy"],
+  "queueEveryHalfHour": [
+    "09:00-09:30", "09:30-10:00", "10:00-10:30", "10:30-11:00",
+    "11:00-11:30", "11:30-12:00", "15:00-15:30", "15:30-16:00",
+    "16:00-16:30", "16:30-17:00", "17:00-17:30", "17:30-18:00",
+    "18:00-18:30", "18:30-19:00"
+  ]
+}
+
+
+
+
+
+
+
+
+###
+
+POST http://localhost:3050/meeting/add-meeting
+Content-Type: application/json
+
+{
+  "userId": "666ee2ca8335c218cd46737a",
+  "therapistId": "667130ed9f64d23c815f9060",
+  "time": "2024-06-20T09:00:00"
 }
 
 

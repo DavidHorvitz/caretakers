@@ -1,13 +1,8 @@
 import { Schema, model } from "mongoose";
-import { v4 as uuidv4 } from 'uuid';
 
 // Define the schema
 const therapistSchema = new Schema({
-    uuid: {
-        type: String,
-        default: uuidv4,
-        unique: true
-    },
+
     therapistId: {
         type: Number,
         required: true,
@@ -66,6 +61,9 @@ const therapistSchema = new Schema({
     },
     availabilityHours: {
         type: [String] // Assuming hours will be stored as an array of strings like ['09:00-12:00', '14:00-18:00']
+    },
+    queueEveryHalfHour:{
+        type: [String]
     },
     specializations: {
         type: [String] // Adding an array of strings to store specializations

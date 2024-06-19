@@ -21,6 +21,11 @@ const meetingSchema = new Schema({
     time: {
         type: Date,
         required: true
+    },
+    hour:{
+        type:String,
+        required: true
+
     }
 });
 

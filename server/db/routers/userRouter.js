@@ -28,12 +28,12 @@ userRouter.get('/login', async (req, res) => {
 
     try {
         // Check if there is a user with the same username and password
-        const user = await User.findOne({ userName, password });
+        const user = await User.findOne({ userName, password }).select('-password');
         console.log(user);
 
         if (user) {
-            // If a user with the provided details exists, proceed to the next page
-            res.status(200).json({ message: 'Login successful' });
+            // If a user with the provided details exists, return user details
+            res.status(200).json({ message: 'Login successful', user });
         } else {
             // If there is no user with the provided details, return an error
             res.status(401).json({ message: 'Incorrect username or password' });
@@ -42,6 +42,8 @@ userRouter.get('/login', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+
 
 // Update user by userName fff
 userRouter.put('/:userName', async (req, res) => {

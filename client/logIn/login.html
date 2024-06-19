@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="login.css">
 </head>
-<body>
-    <h1 id = "mainTitle"> Welcome </h1>
-    <h2 id= "subtitle"> Login to your account </h2>
-    
-    <div id="UserProfile">
-        <div>
-            <label for="user">user name:
-                <input id="user" type="email" required placeholder="Abraham..." maxlength="12">
-            </label>
-        </div>
-        <p></p>
-        <div>
-            <label for="password"> password:
-                <input id="password" type="password" required placeholder="12345678..." maxlength="8">
 
-            </label>
-        </div>
-        <p></p>
-        <div >
-            <button id="submit" type="submit">
-                submit
-            </button>
-            <button id="reset">
-                reset
-            </button>
-            <button id="test">
-                test
-            </button>
-        </div>
-        
-        <h3 id="result"></h3>
-        
-        
+<body>
+    <div style="display: flex; justify-content: space-around; height: 10vh; background-color: rgb(37, 37, 201); color: #3300dd; flex-direction: column;">
     </div>
-    
-    <script src = "login.js" > </script>
-    
+    <div>
+        <h1 id="mainTitle"> Welcome </h1>
+        <h2 id="subtitle"> Login to your account </h2>
+
+        <div id="UserProfile">
+            <div>
+                <label for="user">user name:
+                    <input id="user" type="email" required placeholder="Abraham..." maxlength="12">
+                </label>
+            </div>
+            <p></p>
+            <div>
+                <label for="password"> password:
+                    <input id="password" type="password" required placeholder="12345678..." maxlength="8">
+
+                </label>
+            </div>
+            <p></p>
+            <div>
+                <button id="submit" type="submit">
+                    submit
+                </button>
+                <button id="reset">
+                    reset
+                </button>
+                <button id="test">
+                    test
+                </button>
+            </div>
+
+            <h3 id="result"></h3>
+        </div>
+
+    </div>
+    <script src="login.js"> </script>
+
 </body>
+
 </html>

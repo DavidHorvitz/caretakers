@@ -1,70 +1,95 @@
-/* סגנון לגוף העמוד */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+body {
     font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-}
-
-/* סגנון למיכל הראשי */
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* מרכז את התוכן לגובה */
-    align-items: center; /* מרכז את התוכן לרוחב */
-    height: 100vh; /* גובה מלא של החלון */
-    text-align: center; /* ממרכז את הטקסט */
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+    margin: 0;
     padding: 20px;
+}
+
+.calendar {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
     border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
 }
 
-/* סגנון לכותרת h1 */
-h1 {
-    font-size: 2em;
-    color: #333;
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-/* סגנון לטבלה */
-table {
-    width: 80%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+.calendar-header h2 {
+    margin: 0;
 }
 
-/* סגנון לתאים בטבלה */
-th, td {
-    border: 1px solid #ccc;
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
     padding: 10px;
-    text-align: center;
-}
-
-/* סגנון לתאים פנויים ותפוסים */
-.available {
-    background-color: #d4edda;
-    color: #155724;
-    cursor: pointer;
-}
-
-.unavailable {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* סגנון לכפתור */
-button {
-    padding: 10px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #007bff;
+    font-size: 16px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: #ccc;
+}
+
+.appointments {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.appointment {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #d9edf7;
+    border: 1px solid #bce8f1;
+    border-radius: 3px;
 }
