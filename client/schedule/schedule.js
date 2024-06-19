@@ -1,26 +1,38 @@
-document.addEventListener('DOMContentLoaded', function () {
+import { fetchUserByName } from "../api/users/get_user_by_name.js";
+import { addMeeting } from "../api/meeting/add_meeting.js";
+import { getMeetings } from "../api/meeting/get_meetings.js";
+
+document.addEventListener('DOMContentLoaded', async function () {
     const calendarBody = document.getElementById('calendarBody');
     const appointmentsContainer = document.getElementById('appointmentsContainer');
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
-    const userId = localStorage.getItem("user")
+    const userName = localStorage.getItem("userName");
+    const logOut = document.getElementById("logOut");
     const nextMonth = document.getElementById("NextMonth");
-    const previousMonth = document.getElementById("logOut");
-    previousMonth.addEventListener("click", () => changeMonth(-1))
-    nextMonth.addEventListener("click", () => changeMonth(1))
+    const previousMonth = document.getElementById("PreviousMonth");
+    previousMonth.addEventListener("click", () => changeMonth(-1));
+    nextMonth.addEventListener("click", () => changeMonth(1));
+    console.log(new Date().getDate());
+    console.log(userName);
 
-
-
-
-
-    //console.log(userId);
-    console.log(userId)
-
+    const userData = await fetchUserByName(userName);
+    
 
     updateCalendar(currentMonth, currentYear);
 
-    function setMiting(day, month, year, time) {
-        pass
+    // פונקציה לשינוי חודש
+    function changeMonth(delta) {
+        console.log(currentMonth);
+        currentMonth += delta;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        updateCalendar(currentMonth, currentYear);
     }
 
     // פונקציה לעדכון הלוח שנה
@@ -41,115 +53,53 @@ document.addEventListener('DOMContentLoaded', function () {
             dayElement.addEventListener('click', () => showAppointments(day, month, year));
             calendarBody.appendChild(dayElement);
         }
+    }
 
-        // פונקציה לשינוי חודש
-        function changeMonth(delta) {
-            console.log(currentMonth);
-            currentMonth += delta;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            } else if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            updateCalendar(currentMonth, currentYear);
-        }
-
-        // פונקציה להצגת או הסתרת תפריט ה-dropdown
-        function toggleDropdown() {
-            document.getElementById("monthDropdown").classList.toggle("show");
-        }
-
-        // סגירת ה-dropdown כאשר המשתמש לוחץ מחוץ לתפריט
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    };
     // פונקציה להצגת פגישות ליום מסוים
     function showAppointments(day, month, year) {
         // ניקוי התוכן הקיים ב-container הפגישות
         appointmentsContainer.innerHTML = '';
-
-        const appointments = localStorage.getItem("queueEveryHalfHour")
-        // for (let shift = 0; shifts <= numShifts; shift++) {
-        //     for (let start =
-        //         { time: '10:00', title: 'Meeting with client' },
-        //         { time: '12:00', title: 'Lunch break' },
-        //         { time: '15:00', title: 'Project review' }
-        //       };
+        let queueEveryHalfHour = JSON.parse(localStorage.getItem("therapist")).queueEveryHalfHour;
+        let therapist = JSON.parse(localStorage.getItem("therapist"));
+        const therapistId = therapist._id;
 
         // יצירת אלמנטים להצגת הפגישות
-        appointments.forEach(appointment => {
+        queueEveryHalfHour.forEach(queueTime => {
             const appointmentElement = document.createElement('div');
             appointmentElement.classList.add('appointment');
-            appointmentElement.textContent = `${appointment.time} - ${appointment.title}`;
-            /* כפתור קביעת פגישה*/
-            appointmentElement.addEventListener('click', setMiting(day, month, year, appointment.time));
+            appointmentElement.textContent = `${queueTime}`;
+
+            // יצירת כפתור לקביעת תור
+            const appointmentButton = document.createElement('button');
+            appointmentButton.textContent = 'קביעת תור';
+            appointmentButton.addEventListener('click', function() {
+                const time = new Date(year, month, day);
+                const hour = queueTime;
+                const userId = userData._id;
+                setMeeting(therapistId, userId, time, hour);
+            });
+
+            appointmentElement.appendChild(appointmentButton);
             appointmentsContainer.appendChild(appointmentElement);
         });
     }
-})
-document.addEventListener("DOMContentLoaded", function () {
-    const therapistJSON = localStorage.getItem("therapist");
-    console.log("Therapist JSON from localStorage:", therapistJSON);
 
-    if (!therapistJSON) {
-        console.error("No therapist found in localStorage");
-        return;
-    }
-
-    try {
-        const therapist = JSON.parse(therapistJSON);
-        console.log("Parsed therapist object:", therapist);
-
-        const {
-            firstName,
-            lastName,
-            therapistId: id,
-            address,
-            phoneNumber,
-            email,
-            licenseAndCertifications,
-            startDate,
-            endDate,
-            hourlyRate,
-            notes,
-            daysAvailable,
-            availabilityHours,
-            queueEveryHalfHour,
-            specializations,
-        } = therapist;
-
-        document.getElementById("therapist-name").innerText = `${firstName} ${lastName}`;
-        document.getElementById("therapist-id").innerText = id;
-        document.getElementById("therapist-address").innerText = address;
-        document.getElementById("therapist-phone").innerText = phoneNumber;
-        document.getElementById("therapist-email").innerText = email;
-        document.getElementById("therapist-license").innerText = licenseAndCertifications.join(', ');
-        document.getElementById("therapist-start-date").innerText = new Date(startDate).toLocaleDateString();
-        document.getElementById("therapist-end-date").innerText = endDate ? new Date(endDate).toLocaleDateString() : 'N/A';
-        document.getElementById("therapist-hourly-rate").innerText = hourlyRate ? `$${hourlyRate}` : 'N/A';
-        document.getElementById("therapist-notes").innerText = notes || 'N/A';
-        document.getElementById("therapist-days-available").innerText = Object.keys(daysAvailable).filter(day => daysAvailable[day]).join(', ');
-        document.getElementById("therapist-availability-hours").innerText = availabilityHours.join(', ');
-        document.getElementById("therapist-specializations").innerText = specializations.join(', ');
-        document.getElementById("queueEveryHalfHour").innerText = queueEveryHalfHour.join(', ');
-
-    } catch (error) {
-        console.error("Error parsing therapist data from localStorage:", error);
+    // פונקציה לקביעת תור
+    async function setMeeting(therapistId, userId, time, hour) {
+        try {
+            const response = await addMeeting(therapistId, userId, time, hour);
+            if (response) {
+                console.log('Meeting successfully scheduled:', response);
+            } else {
+                console.error('Failed to schedule meeting.');
+            }
+        } catch (error) {
+            console.error('Error scheduling meeting:', error);
+        }
     }
 });
 
-const logOut = document.getElementById("logOut");
+logOut.addEventListener("click", () => userLogOut());
 
 function userLogOut() {
     // Add an event listener for beforeunload event
@@ -161,10 +111,11 @@ function userLogOut() {
         window.removeEventListener("beforeunload", handleBeforeUnload);
 
         // Redirect to the login page
-        window.location.href = "../login/login.html";
+        window.location.replace("../login/login.html");
 
         // Clear user information
-        localStorage.setItem("user", "");
+        localStorage.setItem("userName", "");
+        userName = "";
     }, 5000);
 }
 

@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Schedule</title>
-<link rel="stylesheet" href="schedule.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="schedule.css">
 </head>
+
 <body>
     <div
-        style="display: flex; justify-content: space-around; height: 10vh; background-color: rgb(37, 37, 201); color: whitesmoke; flex-direction: column; ">
+        style="display: flex; justify-content: space-between;  height: 10vh; background-color: rgb(37, 37, 201); color: whitesmoke;">
         <div style="display: flex;">
-            <div style="flex-grow: 1;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpxzmqd7Mnd2wAD0VH3hhzslm_zZL4kP6_f-sRnZqci4woyGRKijdHQv-5p8jBYSVTCE&usqp=CAU" alt="" style="height: 4vh; width: 23vw;">
-                <h1 >Appointment</h1>
-            </div>
-            <div>
-                <button id="logOut">log out</button>
-            </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpxzmqd7Mnd2wAD0VH3hhzslm_zZL4kP6_f-sRnZqci4woyGRKijdHQv-5p8jBYSVTCE&usqp=CAU"
+                alt="" style="height: 4vh; width: 23vw; margin-right: 10px;">
         </div>
-
-<div class="calendar">
-    <div class="calendar-header">
-        <h2 id="monthYear"></h2>
-        <div class="dropdown">
-            <button onclick="toggleDropdown()" class="dropbtn">Select Month</button>
-            <div id="monthDropdown" class="dropdown-content">
-                <a href="#" id="PreviousMonth" >Previous Month</a>
-                <a href="#" id="NextMonth" >Next Month</a>
-            </div>
-        </div>
+        <h1 style="margin-right: 400px;">Appointment</h1>
+        <button  id="logOut">log out</button>
     </div>
-    <div class="calendar-body" id="calendarBody">
-        <!-- יצירת לוח שנה ב- JavaScript -->
+
+
+
+    <div class="calendar">
+        <div class="calendar-header">
+            <h2 id="monthYear"></h2>
+            <div class="dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">Select Month</button>
+                <div id="monthDropdown" class="dropdown-content">
+                    <a href="#" id="PreviousMonth">Previous Month</a>
+                    <a href="#" id="NextMonth">Next Month</a>
+                </div>
+            </div>
+        </div>
+        <div class="calendar-body" id="calendarBody">
+            <!-- יצירת לוח שנה ב- JavaScript -->
+        </div>
     </div>
     <div class="appointments" id="appointmentsContainer">
         <!-- ייצוג של פגישות ב- JavaScript -->
     </div>
-</div>
 
-<script type="module" src="schedule.js"></script>
+    <script type="module" src="schedule.js"></script>
 </body>
+
 </html>
 
 
@@ -63,4 +66,5 @@
             </div>
         </div> -->
 </body>
+
 </html>

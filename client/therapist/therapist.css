@@ -2,11 +2,11 @@ body {
     height: 100vh;
     width: 100vw;
     margin: 0;
-    background-image: url("https://www.cbtclinic.co.il/wp-content/uploads/2018/12/bigstock-Group-of-people-making-circle-226242934-1024x733.jpg");
+    background-image: url("https://cms-01-enbilab.s3.amazonaws.com/system/images/image_files/000/001/577/original/hand-3035665_1920.jpg?1522078905");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .therapist-container {
@@ -17,7 +17,7 @@ body {
 }
 
 .therapist-item {
-    width: 70vw;
+    width: 65vw;
     margin: 10px 0;
 }
 
@@ -30,19 +30,28 @@ body {
     text-align: left;
 }
 
-.therapist-card h3 {
+.therapist-card h1 {
     text-align: center;
     margin-bottom: 15px;
     color: #333;
 }
+.therapist-card h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #335;
+}
+
 
 .therapist-card p {
-    margin: 5px 0;
-    color: #555;
+    color: #333;
+    font-size: larger;
 }
 
 .therapist-card p strong {
-    color: #333;
+    color: #335;
+    font-size: larger;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 select{
     border-radius: 10px;

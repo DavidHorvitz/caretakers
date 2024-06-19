@@ -1,8 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    height: 100vh;
+    width: 100vw;
     margin: 0;
-    padding: 20px;
+    background-image: url("https://cms-01-enbilab.s3.amazonaws.com/system/images/image_files/000/001/577/original/hand-3035665_1920.jpg?1522078905");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.8;
+    
+  
 }
 
 .calendar {
@@ -75,7 +81,7 @@ body {
 }
 
 .day:hover {
-    background-color: #ccc;
+    background-color: rgb(74, 74, 219);
 }
 
 .appointments {
@@ -84,7 +90,14 @@ body {
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 70vw;
+    justify-content: center;
+    align-items: center;
+    margin: auto; /* כדי להעביר לאמצע */
+    margin-top: 50px; /* רווח מהחלק העליון */
+    text-align: center;
 }
+
 
 .appointment {
     margin-bottom: 10px;
@@ -92,4 +105,22 @@ body {
     background-color: #d9edf7;
     border: 1px solid #bce8f1;
     border-radius: 3px;
+    display: flex;
+    align-items: center; /* יישור למרכז אנכי */
+    justify-content: space-between; /* יישור למרכז אופקי */
 }
+
+.appointment button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.appointment button:hover {
+    background-color: #45a049;
+}
+

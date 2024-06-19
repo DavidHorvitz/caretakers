@@ -2,7 +2,8 @@ import express from 'express';
 import User from '../models/userModel.js';
 
 const userRouter = express.Router();
-// get all users
+
+// Get all users
 userRouter.get('/', async (req, res) => {
     try {
         const users = await User.find();
@@ -12,7 +13,7 @@ userRouter.get('/', async (req, res) => {
     }
 });
 
-// add a new user
+// Add a new user
 userRouter.post('/add-user', async (req, res) => {
     const user = new User(req.body);
     try {
@@ -22,7 +23,8 @@ userRouter.post('/add-user', async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
-// login success check by userName and password
+
+// Login success check by userName and password
 userRouter.get('/login', async (req, res) => {
     const { userName, password } = req.query;
 
@@ -43,9 +45,7 @@ userRouter.get('/login', async (req, res) => {
     }
 });
 
-
-
-// Update user by userName fff
+// Update user by userName
 userRouter.put('/:userName', async (req, res) => {
     const userName = req.params.userName;
     const updatedUserInfo = req.body;
@@ -63,6 +63,7 @@ userRouter.put('/:userName', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
 // Delete user by userName
 userRouter.delete('/:userName', async (req, res) => {
     const userName = req.params.userName;
@@ -70,7 +71,7 @@ userRouter.delete('/:userName', async (req, res) => {
     try {
         // Find the user by userName and delete it
         const deletedUser = await User.findOneAndDelete({ userName });
-        console.log(deletedUser)
+        console.log(deletedUser);
 
         if (deletedUser) {
             res.status(200).json({ message: 'User deleted successfully', deletedUser });
@@ -82,6 +83,38 @@ userRouter.delete('/:userName', async (req, res) => {
     }
 });
 
+// Get user by ID
+userRouter.get('/user-by-id/:id', async (req, res) => {
+    const { id } = req.params;
 
+    try {
+        const user = await User.findById(id);
+        
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Get user by userName
+userRouter.get('/user-by-name/:userName', async (req, res) => {
+    const { userName } = req.params;
+
+    try {
+        const user = await User.findOne({ userName });
+        
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 export default userRouter;

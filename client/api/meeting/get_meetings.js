@@ -1,6 +1,6 @@
 let url = "http://localhost:3050/meeting/";
 
-export const getMeeting = async () => {
+export const getMeetings = async () => {
     try {
         const response = await fetch(url);
 

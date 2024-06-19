@@ -1,7 +1,6 @@
 import { getTherapist } from "../api/therapist/get_alltherapist.js";
 
-let userName = localStorage.getItem("userName");
-let userId = localStorage.getItem("user");
+const userName = localStorage.getItem("userName");
 const select = document.getElementById("select");
 const logOut = document.getElementById("logOut");
 let data = "";
@@ -31,7 +30,8 @@ export const generateTherapistHTML = async (searchTerm = '', specialization = 'a
 
         // Check if there are no results and alert the user
         if (filteredData.length === 0) {
-            alert('No therapists were found with the requested specialization.');        }
+            alert('No therapists were found with the requested specialization.');
+        }
 
         if (specialization !== 'all') {
             filteredData = filterTherapistsBySpecialization(filteredData, specialization);
@@ -56,21 +56,17 @@ export const generateTherapistHTML = async (searchTerm = '', specialization = 'a
 
             therapistItem.innerHTML = `
                <div class="therapist-card">
-                    <h3>${therapist.firstName} ${therapist.lastName}</h3>
-                    <p><strong>Therapist ID:</strong> ${therapist.therapistId}</p>
-                    <p><strong>Therapist Name:</strong> ${therapist.therapistName}</p>
+                    <h1>${therapist.firstName} ${therapist.lastName}</h1>
+                    <h3><strong>License and Certifications:</strong> ${therapist.licenseAndCertifications.join(', ')}</h3>
                     <p><strong>Address:</strong> ${therapist.address}</p>
-                    <p><strong>Phone:</strong> ${therapist.phoneNumber}</p>
-                    <p><strong>Email:</strong> ${therapist.email}</p>
-                    <p><strong>License and Certifications:</strong> ${therapist.licenseAndCertifications.join(', ')}</p>
-                    <p><strong>Start Date:</strong> ${new Date(therapist.startDate).toLocaleDateString()}</p>
-                    ${therapist.endDate ? `<p><strong>End Date:</strong> ${new Date(therapist.endDate).toLocaleDateString()}</p>` : ''}
-                    ${therapist.hourlyRate ? `<p><strong>Hourly Rate:</strong> $${therapist.hourlyRate}</p>` : ''}
-                    ${therapist.notes ? `<p><strong>Notes:</strong> ${therapist.notes}</p>` : ''}
                     <p><strong>Days Available:</strong> ${daysAvailable}</p>
                     <p><strong>Availability Hours:</strong> ${therapist.availabilityHours.join(', ')}</p>
-                    <p><strong>queue Every Half Hour:</strong> ${therapist.queueEveryHalfHour.join(', ')}</p>
+                    <p><strong>Phone:</strong> ${therapist.phoneNumber}</p>
+                    <p><strong>Email:</strong> ${therapist.email}</p>
+                    ${therapist.endDate ? `<p><strong>End Date:</strong> ${new Date(therapist.endDate).toLocaleDateString()}</p>` : ''}
+                    ${therapist.hourlyRate ? `<p><strong>Hourly Rate:</strong> $${therapist.hourlyRate}</p>` : ''}
                     <p><strong>Specializations:</strong> ${therapist.specializations.join(', ')}</p>
+                    ${therapist.notes ? `<p><strong>Notes:</strong> ${therapist.notes}</p>` : ''}
                 </div>
             `;
 
@@ -154,7 +150,7 @@ function userLogOut() {
         window.removeEventListener("beforeunload", handleBeforeUnload);
 
         // Redirect to the login page
-        window.location.href = "../login/login.html";
+        window.location.replace("../login/login.html");
 
         // Clear user information
         localStorage.setItem("userName", "");

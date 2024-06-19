@@ -17,7 +17,7 @@ meetingRouter.get('/', async (req, res) => {
 
 // Create a new meeting
 meetingRouter.post('/add-meeting', async (req, res) => {
-    const { therapistId, userId, time } = req.body;
+    const { therapistId, userId, time, hour } = req.body;
 
     try {
         // Check if therapist exists
@@ -36,7 +36,9 @@ meetingRouter.post('/add-meeting', async (req, res) => {
         const meeting = new Meeting({
             therapistId,
             userId,
-            time
+            time,
+            hour
+
         });
         await meeting.save();
 
